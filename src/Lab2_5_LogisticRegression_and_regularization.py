@@ -239,7 +239,7 @@ class LogisticRegressor:
         return dw + elasticnet_gradient
 
     @staticmethod
-    def log_likelihood(y, y_hat):
+    def maximum_likelihood(y, y_hat):
         """
         Computes the Log-Likelihood loss for logistic regression, which is equivalent to
         computing the cross-entropy loss between the true labels and predicted probabilities.
@@ -266,7 +266,7 @@ class LogisticRegressor:
 
         # TODO: Implement the loss function (log-likelihood)
         m = y.shape[0]  # Number of examples
-        loss = None
+        loss = -(1/m) * sum(y * np.log(y_hat) + (1 - y) * np.log(1 - y_hat))
         return loss
 
     @staticmethod

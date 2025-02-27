@@ -1,3 +1,5 @@
+import numpy as np
+
 class LogisticRegressor:
     def __init__(self):
         """
@@ -283,6 +285,6 @@ class LogisticRegressor:
         """
 
         # TODO: Implement the sigmoid function to convert the logits into probabilities
-        sigmoid_value = None
+        sigmoid_value = 1/(1+np.exp(-z))
 
         return sigmoid_value

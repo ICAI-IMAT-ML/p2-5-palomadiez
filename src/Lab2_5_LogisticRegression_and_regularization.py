@@ -80,7 +80,7 @@ class LogisticRegressor:
 
         # TODO: Initialize all parameters to 0
         self.weights = np.array(np.zeros(n))
-        self.bias = np.array([0.0])
+        self.bias = float(0)
 
         # TODO: Complete the gradient descent code
         # Tip: You can use the code you had in the previous practice
@@ -100,7 +100,6 @@ class LogisticRegressor:
             # TODO: Implement the gradient values
             # CAREFUL! You need to calculate the gradient of the loss function (*negative log-likelihood*)
             X_unos = np.transpose(np.hstack((np.ones((X.shape[0], 1)), X)))
-            w = np.concatenate([self.bias, self.weights])
             full = (1/m) * (X_unos)@(y_hat-y).astype("float")
             dw = full[1:]   # Derivative w.r.t. the coefficients
             db = full[0]    # Derivative w.r.t. the intercept

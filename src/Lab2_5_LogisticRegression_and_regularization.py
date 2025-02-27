@@ -134,7 +134,7 @@ class LogisticRegressor:
         """
 
         # TODO: z is the value of the logits. Write it here (use self.weights and self.bias):
-        z = X@self.weights + self.bias
+        z = X@self.weights+self.bias
 
         # Return the associated probabilities via the sigmoid trasnformation (symmetric choice)
         return self.sigmoid(z)

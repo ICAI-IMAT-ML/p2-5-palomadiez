@@ -179,7 +179,8 @@ class LogisticRegressor:
 
         # TODO:
         # ADD THE LASSO CONTRIBUTION TO THE DERIVATIVE OF THE OBJECTIVE FUNCTION
-        lasso_gradient = None
+        
+        lasso_gradient = (C / m) * np.sign(self.weights)
         return dw + lasso_gradient
 
     def ridge_regularization(self, dw, m, C):
@@ -205,7 +206,7 @@ class LogisticRegressor:
 
         # TODO:
         # ADD THE RIDGE CONTRIBUTION TO THE DERIVATIVE OF THE OBJECTIVE FUNCTION
-        ridge_gradient = None
+        ridge_gradient = (C / m) * dw
         return dw + ridge_gradient
 
     def elasticnet_regularization(self, dw, m, C, l1_ratio):
@@ -235,7 +236,9 @@ class LogisticRegressor:
         # TODO:
         # ADD THE RIDGE CONTRIBUTION TO THE DERIVATIVE OF THE OBJECTIVE FUNCTION
         # Be careful! You can reuse the previous results and combine them here, but beware how you do this!
-        elasticnet_gradient = None
+        gradient_of_lasso = self.lasso_regularization(dw, m, C)
+        gradient_of_ridge = self.ridge_regularization(dw, m, C)
+        elasticnet_gradient = l1_ratio * gradient_of_lasso + (1 - l1_ratio) * gradient_of_ridge
         return dw + elasticnet_gradient
 
     @staticmethod

@@ -75,17 +75,17 @@ class LogisticRegressor:
         - self.bias: The bias of the model after training.
         """
         # TODO: Obtain m (number of examples) and n (number of features)
-        m = None
-        n = None
+        m = X.shape[0]
+        n = X.shape[1]
 
         # TODO: Initialize all parameters to 0
-        self.weights = None
-        self.bias = 0
+        self.weights = np.zeros(n)
+        self.bias = np.array(0)
 
         # TODO: Complete the gradient descent code
         # Tip: You can use the code you had in the previous practice
         # Execute the iterative gradient descent
-        for i in range(None):  # Fill the None here
+        for i in range(num_iterations):  # Fill the None here
 
             # For these two next lines, you will need to implement the respective functions
             # Forward propagation
@@ -236,8 +236,8 @@ class LogisticRegressor:
         # TODO:
         # ADD THE RIDGE CONTRIBUTION TO THE DERIVATIVE OF THE OBJECTIVE FUNCTION
         # Be careful! You can reuse the previous results and combine them here, but beware how you do this!
-        gradient_of_lasso = self.lasso_regularization(dw, m, C)
-        gradient_of_ridge = self.ridge_regularization(dw, m, C)
+        gradient_of_lasso = self.lasso_regularization(dw, m, C) - dw
+        gradient_of_ridge = self.ridge_regularization(dw, m, C) - dw
         elasticnet_gradient = l1_ratio * gradient_of_lasso + (1 - l1_ratio) * gradient_of_ridge
         return dw + elasticnet_gradient
 
